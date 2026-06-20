@@ -38,59 +38,59 @@
             
             <div class="vehicle-card" data-category="car">
                 <img src="car1.png" alt="Ultra-Luxury Sedan" class="vehicle-img">
-                <div class="vehicle-info">
-                    <span class="serial-tag">UNIT // V12-SEDAN</span>
-                    <h3>ULTRA-LUXURY SEDAN</h3>
-                    <p><strong>Engine:</strong> 6,750 cc Twin-Turbo V12 | 8-Speed Automatic AWD<br><strong>Performance:</strong> 563 bhp & 820 Nm Max Torque<br><strong>Fuel Type:</strong> Petrol</p>
-                </div>
+                <div class="card-overlay-title">ULTRA-LUXURY SEDAN</div>
+                <div class="hidden-details" data-tag="UNIT // V12-SEDAN" data-title="ULTRA-LUXURY SEDAN" data-desc="<strong>Engine:</strong> 6,750 cc Twin-Turbo V12 | 8-Speed Automatic AWD<br><br><strong>Performance:</strong> 563 bhp & 820 Nm Max Torque<br><br><strong>Fuel Type:</strong> Petrol"></div>
             </div>
 
             <div class="vehicle-card" data-category="car">
                 <img src="car2.png" alt="Mercedes-Benz A-Class" class="vehicle-img">
-                <div class="vehicle-info">
-                    <span class="serial-tag">UNIT // A-CLASS</span>
-                    <h3>A-CLASS LIMOUSINE</h3>
-                    <p><strong>Petrol (A 200):</strong> 1,332 cc Turbo I4 (~₹45.80 Lakh)<br><strong>Diesel (A 200d):</strong> 1,950 cc I4 (~₹48.55 Lakh)<br>Category: Luxury Sedan Variant</p>
-                </div>
+                <div class="card-overlay-title">A-CLASS LIMOUSINE</div>
+                <div class="hidden-details" data-tag="UNIT // A-CLASS" data-title="A-CLASS LIMOUSINE" data-desc="<strong>Petrol (A 200):</strong> 1,332 cc Turbo I4 (~₹45.80 Lakh)<br><br><strong>Diesel (A 200d):</strong> 1,950 cc I4 (~₹48.55 Lakh)<br><br><strong>Category:</strong> Luxury Sedan Variant"></div>
             </div>
 
             <div class="vehicle-card" data-category="car">
                 <img src="car3.png" alt="Lamborghini Revuelto" class="vehicle-img">
-                <div class="vehicle-info">
-                    <span class="serial-tag">UNIT // REVUELTO</span>
-                    <h3>LAMBORGHINI REVUELTO</h3>
-                    <p><strong>Engine:</strong> 6498 cc Hybrid V12 Engine<br><strong>Category:</strong> Plug-in Hybrid Super Sports Car<br><strong>Price Value:</strong> ~ ₹8.89 Crore</p>
-                </div>
+                <div class="card-overlay-title">LAMBORGHINI REVUELTO</div>
+                <div class="hidden-details" data-tag="UNIT // REVUELTO" data-title="LAMBORGHINI REVUELTO" data-desc="<strong>Engine:</strong> 6498 cc Hybrid V12 Engine<br><br><strong>Category:</strong> Plug-in Hybrid Super Sports Car<br><br><strong>Price Value:</strong> ~ ₹8.89 Crore"></div>
             </div>
 
             <div class="vehicle-card" data-category="bike">
                 <img src="bike1.png" alt="Harley-Davidson X440" class="vehicle-img">
-                <div class="vehicle-info">
-                    <span class="serial-tag">UNIT // X440</span>
-                    <h3>HARLEY-DAVIDSON X440</h3>
-                    <p><strong>Category:</strong> Roadster (Denim / Vivid / S)<br><strong>Engine:</strong> 440 cc Displacement<br><strong>Price Value:</strong> ₹2.35 Lakh - ₹2.79 Lakh</p>
-                </div>
+                <div class="card-overlay-title">HARLEY-DAVIDSON X440</div>
+                <div class="hidden-details" data-tag="UNIT // X440" data-title="HARLEY-DAVIDSON X440" data-desc="<strong>Category:</strong> Roadster (Denim / Vivid / S)<br><br><strong>Engine:</strong> 440 cc Displacement<br><br><strong>Price Value:</strong> ₹2.35 Lakh - ₹2.79 Lakh"></div>
             </div>
 
             <div class="vehicle-card" data-category="bike">
                 <img src="bike2.png" alt="Triumph Speed T4" class="vehicle-img">
-                <div class="vehicle-info">
-                    <span class="serial-tag">UNIT // SPEED-T4</span>
-                    <h3>TRIUMPH SPEED T4</h3>
-                    <p><strong>Category:</strong> Roadster / Entry Level Cycle<br><strong>Engine:</strong> 349 cc Displacement<br><strong>Price Value:</strong> ~ ₹1,99,000</p>
-                </div>
+                <div class="card-overlay-title">TRIUMPH SPEED T4</div>
+                <div class="hidden-details" data-tag="UNIT // SPEED-T4" data-title="TRIUMPH SPEED T4" data-desc="<strong>Category:</strong> Roadster / Entry Level Cycle<br><br><strong>Engine:</strong> 349 cc Displacement<br><br><strong>Price Value:</strong> ~ ₹1,99,000"></div>
             </div>
 
             <div class="vehicle-card" data-category="bike">
                 <img src="bike3.png" alt="Kawasaki W175" class="vehicle-img">
-                <div class="vehicle-info">
-                    <span class="serial-tag">UNIT // W175</span>
-                    <h3>KAWASAKI W175</h3>
-                    <p><strong>Category:</strong> Commuter / Retro Classic<br><strong>Engine:</strong> 177 cc Displacement<br><strong>Price Value:</strong> ~ ₹1.15 Lakhs</p>
-                </div>
+                <div class="card-overlay-title">KAWASAKI W175</div>
+                <div class="hidden-details" data-tag="UNIT // W175" data-title="KAWASAKI W175" data-desc="<strong>Category:</strong> Commuter / Retro Classic<br><br><strong>Engine:</strong> 177 cc Displacement<br><br><strong>Price Value:</strong> ~ ₹1.15 Lakhs"></div>
             </div>
 
         </main>
+    </div>
+
+    <div id="hud-modal" class="hud-modal hidden">
+        <canvas id="spark-canvas"></canvas>
+        
+        <div class="modal-container">
+            <button class="close-modal-btn" id="close-modal">&times;</button>
+            <div class="modal-layout">
+                <div class="modal-left">
+                    <img id="modal-img" src="" alt="Diagnostic View">
+                </div>
+                <div class="modal-right">
+                    <span id="modal-tag" class="serial-tag">UNIT // SYSTEM_SCAN</span>
+                    <h2 id="modal-title">SPECIFICATION DATA</h2>
+                    <div id="modal-desc" class="diagnostic-readout"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="app.js"></script>

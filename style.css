@@ -19,7 +19,7 @@ body, html {
     overflow-x: hidden;
 }
 
-h1, h2, h3, .launch-btn, .filter-btn, .mute-btn {
+h1, h2, h3, .launch-btn, .filter-btn, .mute-btn, .card-overlay-title {
     font-family: 'Orbitron', sans-serif;
 }
 
@@ -176,51 +176,159 @@ h1, h2, h3, .launch-btn, .filter-btn, .mute-btn {
     border-radius: 4px;
     overflow: hidden;
     position: relative;
+    cursor: pointer;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .vehicle-card:hover {
-    transform: translateY(-5px);
-    border-top-color: var(--iron-gold);
-    box-shadow: 0 10px 25px rgba(168, 28, 28, 0.25);
+    transform: scale(1.03);
+    border-top-color: var(--hud-cyan);
+    box-shadow: 0 10px 25px rgba(0, 243, 255, 0.2);
 }
 
 .vehicle-img {
     width: 100%;
-    height: 220px;
+    height: 260px;
     object-fit: cover;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
     background: #1c1e24;
+    display: block;
+    transition: filter 0.3s ease;
 }
 
-.vehicle-info {
-    padding: 20px;
+.vehicle-card:hover .vehicle-img {
+    filter: brightness(0.7) contrast(1.1);
 }
 
-.serial-tag {
-    font-size: 0.8rem;
-    color: var(--hud-cyan);
-    font-weight: bold;
-}
-
-.vehicle-info h3 {
-    margin: 5px 0 12px 0;
-    font-size: 1.4rem;
+.card-overlay-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
     color: #ffffff;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
 }
 
-.vehicle-info p {
-    color: #a0a5b5;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 0;
+.hidden-details {
+    display: none;
 }
 
-.vehicle-info strong {
+/* --- DIAGNOSTIC HUD MODAL WINDOW & CANVAS --- */
+.hud-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 12, 0.92);
+    backdrop-filter: blur(8px);
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+.hud-modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#spark-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.modal-container {
+    background: #111317;
+    border: 2px solid var(--hud-cyan);
+    box-shadow: 0 0 40px rgba(0, 243, 255, 0.3);
+    border-radius: 6px;
+    width: 85%;
+    max-width: 850px;
+    position: relative;
+    padding: 30px;
+    z-index: 2; /* Sits cleanly over spark canvas layer */
+    transform: scale(1);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hud-modal.hidden .modal-container {
+    transform: scale(0.85);
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: var(--iron-red);
+    font-size: 2.2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal-btn:hover {
     color: var(--iron-gold);
 }
 
-/* Logic handling view toggle */
+.modal-layout {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.modal-left, .modal-right {
+    flex: 1;
+    min-width: 300px;
+}
+
+#modal-img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 20px rgba(0,243,255,0.2);
+}
+
+.serial-tag {
+    font-size: 0.9rem;
+    color: var(--hud-cyan);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#modal-title {
+    margin: 0 0 20px 0;
+    font-size: 2rem;
+    color: #ffffff;
+    border-bottom: 2px solid var(--iron-red);
+    padding-bottom: 10px;
+}
+
+.diagnostic-readout {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #cdd2e0;
+}
+
+.diagnostic-readout strong {
+    color: var(--iron-gold);
+}
+
 .card-hide {
     display: none !important;
 }
