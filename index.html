@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stark Armor Garage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="garage-audio" src="ironman_theme.mp3" loop></audio>
+
+    <div id="poster-screen" class="poster-screen">
+        <div class="poster-overlay"></div>
+        <div class="poster-content">
+            <h1>ARMOR GARAGE v1.0</h1>
+            <p>VEHICLE PROTOCODE PROTOCOLS ACTIVE</p>
+            <button class="launch-btn" id="launch-btn">Initialize Systems</button>
+        </div>
+    </div>
+
+    <div id="main-content" class="main-content hidden">
+        <header class="hud-header">
+            <div class="logo">STARK IND.</div>
+            
+            <div class="header-controls">
+                <nav class="filter-nav">
+                    <button class="filter-btn active" data-filter="all">ALL UNITS</button>
+                    <button class="filter-btn" data-filter="car">CARS</button>
+                    <button class="filter-btn" data-filter="bike">BIKES</button>
+                </nav>
+                <button id="mute-btn" class="mute-btn">🔊 MUTE</button>
+            </div>
+        </header>
+
+        <main class="showcase-grid">
+            
+            <div class="vehicle-card" data-category="car">
+                <img src="car1.png" alt="Ultra-Luxury Sedan" class="vehicle-img">
+                <div class="vehicle-info">
+                    <span class="serial-tag">UNIT // V12-SEDAN</span>
+                    <h3>ULTRA-LUXURY SEDAN</h3>
+                    <p><strong>Engine:</strong> 6,750 cc Twin-Turbo V12 | 8-Speed Automatic AWD<br><strong>Performance:</strong> 563 bhp & 820 Nm Max Torque<br><strong>Fuel Type:</strong> Petrol</p>
+                </div>
+            </div>
+
+            <div class="vehicle-card" data-category="car">
+                <img src="car2.png" alt="Mercedes-Benz A-Class" class="vehicle-img">
+                <div class="vehicle-info">
+                    <span class="serial-tag">UNIT // A-CLASS</span>
+                    <h3>A-CLASS LIMOUSINE</h3>
+                    <p><strong>Petrol (A 200):</strong> 1,332 cc Turbo I4 (~₹45.80 Lakh)<br><strong>Diesel (A 200d):</strong> 1,950 cc I4 (~₹48.55 Lakh)<br>Category: Luxury Sedan Variant</p>
+                </div>
+            </div>
+
+            <div class="vehicle-card" data-category="car">
+                <img src="car3.png" alt="Lamborghini Revuelto" class="vehicle-img">
+                <div class="vehicle-info">
+                    <span class="serial-tag">UNIT // REVUELTO</span>
+                    <h3>LAMBORGHINI REVUELTO</h3>
+                    <p><strong>Engine:</strong> 6498 cc Hybrid V12 Engine<br><strong>Category:</strong> Plug-in Hybrid Super Sports Car<br><strong>Price Value:</strong> ~ ₹8.89 Crore</p>
+                </div>
+            </div>
+
+            <div class="vehicle-card" data-category="bike">
+                <img src="bike1.png" alt="Harley-Davidson X440" class="vehicle-img">
+                <div class="vehicle-info">
+                    <span class="serial-tag">UNIT // X440</span>
+                    <h3>HARLEY-DAVIDSON X440</h3>
+                    <p><strong>Category:</strong> Roadster (Denim / Vivid / S)<br><strong>Engine:</strong> 440 cc Displacement<br><strong>Price Value:</strong> ₹2.35 Lakh - ₹2.79 Lakh</p>
+                </div>
+            </div>
+
+            <div class="vehicle-card" data-category="bike">
+                <img src="bike2.png" alt="Triumph Speed T4" class="vehicle-img">
+                <div class="vehicle-info">
+                    <span class="serial-tag">UNIT // SPEED-T4</span>
+                    <h3>TRIUMPH SPEED T4</h3>
+                    <p><strong>Category:</strong> Roadster / Entry Level Cycle<br><strong>Engine:</strong> 349 cc Displacement<br><strong>Price Value:</strong> ~ ₹1,99,000</p>
+                </div>
+            </div>
+
+            <div class="vehicle-card" data-category="bike">
+                <img src="bike3.png" alt="Kawasaki W175" class="vehicle-img">
+                <div class="vehicle-info">
+                    <span class="serial-tag">UNIT // W175</span>
+                    <h3>KAWASAKI W175</h3>
+                    <p><strong>Category:</strong> Commuter / Retro Classic<br><strong>Engine:</strong> 177 cc Displacement<br><strong>Price Value:</strong> ~ ₹1.15 Lakhs</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
