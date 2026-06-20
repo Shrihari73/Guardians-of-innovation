@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const garageAudio = document.getElementById('garage-audio');
     const muteBtn = document.getElementById('mute-btn');
 
+    // Cinematic Elements
+    const arcContainer = document.getElementById('arc-container');
+    const flashOverlay = document.getElementById('flash-overlay');
+    const posterContent = document.getElementById('poster-content');
+
     // Modal HUD Popup Elements
     const hudModal = document.getElementById('hud-modal');
     const closeModal = document.getElementById('close-modal');
@@ -25,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let sparks = [];
     let animationFrameId;
 
-    // Set canvas dimensions dynamically
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -33,14 +37,25 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // 1. POSTER SLIDE & TRIGGER MUSIC ENGINE
+    // 1. CINEMATIC ARC REACTOR BURST TRANSITION
     launchBtn.addEventListener('click', () => {
-        posterScreen.classList.add('exit');
-        mainContent.classList.remove('hidden');
+        // Step A: Blow up the arc reactor component visually
+        arcContainer.classList.add('arc-burst');
+        launchBtn.style.opacity = '0';
         
-        garageAudio.play().catch(error => {
-            console.log("Audio activation safely bypassed until click:", error);
-        });
+        // Step B: Flash intense white light overlay across background layout
+        setTimeout(() => {
+            flashOverlay.classList.add('flash-active');
+            // Trigger audio stream
+            garageAudio.play().catch(e => console.log("Audio waiting..."));
+        }, 350);
+
+        // Step C: Switch display channels smoothly
+        setTimeout(() => {
+            posterScreen.style.display = 'none';
+            mainContent.classList.remove('hidden');
+            flashOverlay.classList.remove('flash-active');
+        }, 850);
     });
 
     // 2. VOLUME MUTE TOGGLE LOGIC
@@ -85,14 +100,12 @@ document.addEventListener('DOMContentLoaded', () => {
         constructor(x, y) {
             this.x = x;
             this.y = y;
-            // High upward velocity fading down like welding sparks
             this.vx = (Math.random() - 0.5) * 8;
             this.vy = (Math.random() - 0.8) * 10 - 2;
             this.radius = Math.random() * 2.5 + 1;
             this.alpha = 1;
             this.decay = Math.random() * 0.015 + 0.01;
             this.gravity = 0.25;
-            // Hot amber / structural metallic yellow colors
             this.color = Math.random() > 0.4 ? '#ff9d00' : '#ffdd00';
         }
 
@@ -109,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
             ctx.fillStyle = this.color;
-            // Glowing effect
             ctx.shadowBlur = 10;
             ctx.shadowColor = this.color;
             ctx.fill();
@@ -117,19 +129,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Canvas Processing Loop Engine
     function animateSparks() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
         for (let i = sparks.length - 1; i >= 0; i--) {
             sparks[i].update();
             sparks[i].draw();
-            
-            if (sparks[i].alpha <= 0) {
-                sparks.splice(i, 1);
-            }
+            if (sparks[i].alpha <= 0) sparks.splice(i, 1);
         }
-        
         if (sparks.length > 0) {
             animationFrameId = requestAnimationFrame(animateSparks);
         } else {
@@ -138,19 +144,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Trigger explosive background burst
     function createSparkShower() {
         cancelAnimationFrame(animationFrameId);
         sparks = [];
-        
         const centerX = canvas.width / 2;
         const centerY = canvas.height / 2;
-        
-        // Generate 75 individual particles radiating from center window boundaries
         for (let i = 0; i < 75; i++) {
             sparks.push(new Spark(centerX + (Math.random() - 0.5) * 200, centerY + (Math.random() - 0.5) * 100));
         }
-        
         animateSparks();
     }
 
@@ -170,19 +171,15 @@ document.addEventListener('DOMContentLoaded', () => {
             modalDesc.innerHTML = description;
 
             hudModal.classList.remove('hidden');
-            
-            // Fires up manufacturing spark blast behind modal UI context
             createSparkShower();
         });
     });
 
-    // Close Modal via Exit Button
     closeModal.addEventListener('click', () => {
         hudModal.classList.add('hidden');
-        sparks = []; // Wipe arrays clear
+        sparks = [];
     });
 
-    // Close Modal if clicking outside container bounds
     hudModal.addEventListener('click', (e) => {
         if (e.target === hudModal) {
             hudModal.classList.add('hidden');

@@ -13,7 +13,22 @@
 
     <div id="poster-screen" class="poster-screen">
         <div class="poster-overlay"></div>
-        <div class="poster-content">
+        
+        <div id="flash-overlay" class="flash-overlay"></div>
+
+        <div class="poster-content" id="poster-content">
+            <div class="arc-container" id="arc-container">
+                <div class="arc-reactor">
+                    <div class="arc-core"></div>
+                    <div class="arc-ring">
+                        <div class="block"></div><div class="block"></div>
+                        <div class="block"></div><div class="block"></div>
+                        <div class="block"></div><div class="block"></div>
+                        <div class="block"></div><div class="block"></div>
+                    </div>
+                </div>
+            </div>
+
             <h1>ARMOR GARAGE v1.0</h1>
             <p>VEHICLE PROTOCODE PROTOCOLS ACTIVE</p>
             <button class="launch-btn" id="launch-btn">Initialize Systems</button>
@@ -77,7 +92,6 @@
 
     <div id="hud-modal" class="hud-modal hidden">
         <canvas id="spark-canvas"></canvas>
-        
         <div class="modal-container">
             <button class="close-modal-btn" id="close-modal">&times;</button>
             <div class="modal-layout">
