@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cinematic Elements
     const arcContainer = document.getElementById('arc-container');
     const flashOverlay = document.getElementById('flash-overlay');
-    const posterContent = document.getElementById('poster-content');
 
     // Modal HUD Popup Elements
     const hudModal = document.getElementById('hud-modal');
@@ -39,26 +38,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. CINEMATIC ARC REACTOR BURST TRANSITION
     launchBtn.addEventListener('click', () => {
-        // Step A: Blow up the arc reactor component visually
         arcContainer.classList.add('arc-burst');
         launchBtn.style.opacity = '0';
         
-        // Step B: Flash intense white light overlay across background layout
         setTimeout(() => {
             flashOverlay.classList.add('flash-active');
-            // Trigger audio stream
             garageAudio.play().catch(e => console.log("Audio waiting..."));
         }, 350);
 
-        // Step C: Switch display channels smoothly
         setTimeout(() => {
             posterScreen.style.display = 'none';
             mainContent.classList.remove('hidden');
             flashOverlay.classList.remove('flash-active');
+            generateStarkDataStreams(); // Turn on ambient side code streams
         }, 850);
     });
 
-    // 2. VOLUME MUTE TOGGLE LOGIC
+    // 2. STARK HUD LIVE TEXT DATA STREAMS
+    function generateStarkDataStreams() {
+        const streamLeft = document.getElementById('stream-left');
+        const streamRight = document.getElementById('stream-right');
+        
+        function getTechString() {
+            let output = "";
+            for(let i=0; i<15; i++) {
+                output += (Math.random() > 0.5 ? "SYS_" : "MOD_") + Math.floor(Math.random()*900 + 100) + "\n";
+                output += "VAL:" + (Math.random() * 100).toFixed(2) + "%\n";
+            }
+            return output;
+        }
+
+        setInterval(() => {
+            streamLeft.innerText = getTechString();
+            streamRight.innerText = getTechString();
+        }, 1200);
+    }
+
+    // 3. VOLUME MUTE TOGGLE LOGIC
     muteBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (garageAudio.muted) {
@@ -74,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. SEPARATION & GRID FILTER ENGINE
+    // 4. SEPARATION & GRID FILTER ENGINE
     filterButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -95,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Spark Object Blueprint Definition
+    // Spark Particle Blueprint Definition
     class Spark {
         constructor(x, y) {
             this.x = x;
@@ -155,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animateSparks();
     }
 
-    // 4. MODAL POPUP SPECIFICATION READOUT LOGIC
+    // 5. MODAL POPUP SPECIFICATION READOUT LOGIC
     vehicleCards.forEach(card => {
         card.addEventListener('click', () => {
             const imgSource = card.querySelector('.vehicle-img').src;
